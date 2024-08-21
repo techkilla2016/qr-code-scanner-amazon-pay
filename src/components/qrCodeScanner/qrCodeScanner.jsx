@@ -29,6 +29,8 @@ export default function QrCodeScanner({
     const onScanSuccess = (decodedResult) => {
       setScanResult(decodedResult);
       setShowWelcomePopup(true);
+
+      // restart the scanner after clear
       setTimeout(() => {
         scanner
           .clear()

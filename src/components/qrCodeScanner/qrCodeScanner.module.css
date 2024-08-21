@@ -5,7 +5,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 30vw;
-  height: 96svh;
+  min-height: 96svh;
   justify-content: flex-start !important;
   position: relative;
   border-radius: 1vw;
