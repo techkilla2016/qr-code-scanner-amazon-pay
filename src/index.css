@@ -34,7 +34,7 @@
 
 body {
   background-color: #222e3e;
-  min-height: 100dvh;
+  height: 100svh;
   overflow-x: hidden;
   display: flex;
   justify-content: center;
