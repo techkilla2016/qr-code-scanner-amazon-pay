@@ -5,7 +5,7 @@ import welcomeLogo from "./../../assets/welcome-logo.png";
 import leftDiya from "./../../assets/leftDiya.png";
 import close from "./../../assets/close.png";
 
-export default function WelcomePopup({ setShowWelcomePopup, setScanResult }) {
+export default function WelcomePopup({ user,setShowWelcomePopup, setScanResult }) {
   console.log("started welcome popup");
 
   return (
@@ -17,7 +17,7 @@ export default function WelcomePopup({ setShowWelcomePopup, setScanResult }) {
 
         <div className={`flex-col-center ${styles.welcomeTitle}`}>
           <h1 className={styles.upperTxt}>Welcome</h1>
-          <h2 className={styles.resultTxt}>Pranjal Gogoi</h2>
+          <h2 className={styles.resultTxt}>{user.Name}</h2>
         </div>
 
         {/* left diya */}

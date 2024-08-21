@@ -3,18 +3,29 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 
 import styles from "./qrCodeScanner.module.css";
 import "./qrCodeOverwrite.css";
+import axios from "axios";
+import BlockUI from "../BlockUI/BlockUI";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../config/firebase";
+
+
 
 export default function QrCodeScanner({
   setShowWelcomePopup,
   scanResult,
   setScanResult,
+  setUser
 }) {
   const scannerRef = useRef(null);
   const scannerInstance = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (scannerInstance.current) {
+      console.log(scannerInstance.current)
+
       return;
+
     }
 
     const scanner = new Html5QrcodeScanner("qr-reader", {
@@ -27,19 +38,36 @@ export default function QrCodeScanner({
     // success function
     const onScanSuccess = (decodedResult) => {
       setScanResult(decodedResult);
-      setShowWelcomePopup(true);
+    
+      setLoading(true)
+      axios.post('https://analytiq4.com/demo/qr-scannerv3/php/scan.php', {
+        code:decodedResult
+      })
+      .then(async function (response) {
+        var data = response.data;
+        if(data.status == "success")
+        {
+        data.timestamp = Date.now();
 
-      // restart the scanner after clear
-      setTimeout(() => {
-        scanner
-          .clear()
-          .then(() => {
-            scanner.render(onScanSuccess, onScanFailure); // Restart scanner
-          })
-          .catch((error) => {
-            console.error("Failed to clear html5QrcodeScanner:", error);
-          });
-      }, 500);
+        const valueRef = collection(db, "collection1");
+        const result = await addDoc(valueRef,data);
+        setUser(data)
+        setShowWelcomePopup(true)
+        }else
+        {
+          alert("Error. QR already scanned.")
+        }
+        setLoading(false)
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false)
+      });
+
+      let stopButton = document.getElementById('html5-qrcode-button-camera-stop');
+      if(stopButton)
+         stopButton.click()
+      
     };
 
     // error function
@@ -66,6 +94,7 @@ export default function QrCodeScanner({
       <h1>QR Code Scanner</h1>
       {/* scanner */}
       <div className={`flex-col-center ${styles.qrWrapper}`}>
+        
         <div
           id="qr-reader"
           ref={scannerRef}
@@ -83,6 +112,7 @@ export default function QrCodeScanner({
           </a>
         </p>
       </div>
+      <BlockUI blocking={loading} />
     </div>
   );
 }
