@@ -1,0 +1,164 @@
+@font-face {
+  font-family: "Amazon amber bold";
+  src: url("../Assets/Fonts/Amazon Ember Bold.ttf");
+}
+
+@font-face {
+  font-family: "Amazon amber heavy";
+  src: url("../Assets/Fonts/Amazon Ember Heavy.ttf");
+  font-weight: 900;
+}
+
+.WelcomePopup {
+  width: 100vw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  .mainContainer {
+    border: 0.2vw solid #f1f1f1;
+    border-radius: 1vw;
+    width: 50%;
+    height: 60%;
+    position: relative;
+    background-image: url("../../assets/welcome-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    .headingLogo {
+      position: absolute;
+      top: 0;
+      width: 30vw;
+    }
+    .welcomeTitle {
+      margin-top: 11vw;
+      padding: 3vw;
+
+      .upperTxt {
+        font-size: 4vw;
+        font-family: "Amazon amber heavy";
+      }
+
+      .resultTxt {
+        font-size: 2vw;
+        font-family: "Amazon amber heavy";
+        color: #141414;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+    .diyas {
+      position: absolute;
+      top: 0;
+      width: 23vw;
+      mix-blend-mode: multiply;
+
+      &.diyaLeft {
+        left: 0;
+      }
+
+      &.diyaRight {
+        right: 0;
+        transform: scaleX(-1);
+      }
+    }
+    .closeButton {
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 3vw;
+      cursor: pointer;
+    }
+  }
+}
+
+/* tablet view */
+@media all and (max-width: 1024px) {
+  .WelcomePopup {
+    .mainContainer {
+      border: 0.4vw solid #f1f1f1;
+      border-radius: 2vw;
+      width: 80%;
+      height: 70vw;
+      .headingLogo {
+        width: 45vw;
+      }
+      .welcomeTitle {
+        margin-top: 15vw;
+        padding: 3vw;
+        .upperTxt {
+          font-size: 8vw;
+        }
+        .resultTxt {
+          font-size: 4vw;
+        }
+      }
+      .diyas {
+        width: 40vw;
+        mix-blend-mode: multiply;
+
+        &.diyaLeft {
+          left: 0;
+        }
+
+        &.diyaRight {
+          right: 0;
+          transform: scaleX(-1);
+        }
+      }
+      .closeButton {
+        top: -17%;
+        right: -2%;
+        width: 6vw;
+      }
+    }
+  }
+}
+
+/* mobile view */
+@media all and (max-width: 480px) {
+  .WelcomePopup {
+    .mainContainer {
+      border: 0.5vw solid #f1f1f1;
+      border-radius: 3vw;
+      width: 90%;
+      height: 80vw;
+      .headingLogo {
+        width: 55vw;
+      }
+      .welcomeTitle {
+        margin-top: 11vw;
+        padding: 3vw;
+        .upperTxt {
+          font-size: 10vw;
+        }
+        .resultTxt {
+          font-size: 5vw;
+        }
+      }
+      .diyas {
+        width: 45vw;
+        mix-blend-mode: multiply;
+
+        &.diyaLeft {
+          left: 0;
+        }
+
+        &.diyaRight {
+          right: 0;
+          transform: scaleX(-1);
+        }
+      }
+      .closeButton {
+        top: -20%;
+        right: -2%;
+        width: 8vw;
+      }
+    }
+  }
+}

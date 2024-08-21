@@ -1,0 +1,143 @@
+.QrCodeScanner {
+  /* border: 0.25vw solid #212121; */
+  background-image: url("./../../assets/bg-scanner.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 30vw;
+  height: 96dvh;
+  justify-content: flex-start !important;
+  position: relative;
+  border-radius: 1vw;
+  gap: 3vw;
+  box-shadow: 0 0 0.5vw rgba(255, 255, 255, 0.5);
+  h1 {
+    margin-top: 2vw;
+  }
+  .qrWrapper {
+    /* border: 2px solid red; */
+    width: 95%;
+    height: auto;
+    padding: 1vw;
+
+    .qrBox {
+      /* border: 0.2vw solid black !important; */
+      width: 100%;
+      height: 100%;
+      border: none !important;
+      img {
+        /* display: none; */
+        width: 20vh;
+      }
+    }
+  }
+
+  .scanResult {
+    width: 100%;
+    height: 10vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: flex-start !important;
+    background-color: #f1f1f1;
+    border-bottom-right-radius: 0.7vw;
+    border-bottom-left-radius: 0.7vw;
+    padding: 1vw;
+    p {
+      font-size: 2vh;
+    }
+    .hideResult {
+      visibility: hidden;
+    }
+    .showResult {
+      visibility: visible;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* tablet view */
+@media all and (max-width: 1024px) {
+  .QrCodeScanner {
+    /* border: 0.25vw solid #212121; */
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+    gap: 4vh;
+    box-shadow: none;
+    h1 {
+      margin-top: 3vh;
+    }
+    .qrWrapper {
+      /* border: 2px solid red; */
+      width: 85%;
+      height: auto;
+      padding: 0;
+      .qrBox {
+        /* border: 0.5vw solid black !important; */
+        width: 100%;
+        height: 100%;
+
+        img {
+          /* display: none; */
+          width: 30vh;
+        }
+      }
+    }
+
+    .scanResult {
+      width: 100%;
+      height: 15vh;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      padding: 2vh;
+      p {
+        font-size: 1.8vh;
+      }
+    }
+  }
+}
+
+/* mobile view */
+@media all and (max-width: 480px) {
+  .QrCodeScanner {
+    /* border: 0.25vw solid #212121; */
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+    gap: 5vh;
+    box-shadow: none;
+    h1 {
+      margin-top: 3vh;
+    }
+    .qrWrapper {
+      /* border: 2px solid red; */
+      width: 95%;
+      height: auto;
+      padding: 0;
+      .qrBox {
+        /* border: 0.5vw solid black !important; */
+        width: 100%;
+        height: 100%;
+        img {
+          /* display: none; */
+          width: 20vh;
+        }
+      }
+    }
+
+    .scanResult {
+      width: 100%;
+      height: 15vh;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      padding: 2vh;
+      p {
+        font-size: 2vh;
+      }
+    }
+  }
+}

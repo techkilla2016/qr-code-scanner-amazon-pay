@@ -1,0 +1,37 @@
+/* qrCodeScanner.module.css */
+
+#qr-reader {
+  width: 100% !important;
+  height: auto !important;
+  border: 0.2vw solid var(--textColor) !important;
+  border-radius: 1vw !important;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+#qr-reader canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+#qr-reader button {
+  background-color: var(--textColor) !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5vw 1vw !important;
+  border-radius: 0.3vw !important;
+  font-size: 1vw !important;
+  cursor: pointer !important;
+}
+
+#qr-reader span {
+  color: var(--textColor) !important;
+  font-size: 14px !important;
+}
+
+/* You can target other specific elements the same way */
+
+@media all and (max-width: 480px) {
+}
