@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
+
 import styles from "./qrCodeScanner.module.css";
 import "./qrCodeOverwrite.css";
-
-import qrGif from "./../../assets/qr-gif.gif";
 
 export default function QrCodeScanner({
   setShowWelcomePopup,
