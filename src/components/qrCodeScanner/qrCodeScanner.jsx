@@ -3,26 +3,41 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 import styles from "./qrCodeScanner.module.css";
 import "./qrCodeOverwrite.css";
 
+import qrGif from "./../../assets/qr-gif.gif";
+
 export default function QrCodeScanner({
   setShowWelcomePopup,
   scanResult,
   setScanResult,
 }) {
   const scannerRef = useRef(null);
+  const scannerInstance = useRef(null);
 
   useEffect(() => {
+    if (scannerInstance.current) {
+      return;
+    }
+
     const scanner = new Html5QrcodeScanner("qr-reader", {
       fps: 10,
       qrbox: { width: 250, height: 250 },
     });
+
+    scannerInstance.current = scanner;
 
     // success function
     const onScanSuccess = (decodedResult) => {
       setScanResult(decodedResult);
       setShowWelcomePopup(true);
       setTimeout(() => {
-        scanner.clear();
-        scanner.render(onScanSuccess, onScanFailure); // Restart scanner
+        scanner
+          .clear()
+          .then(() => {
+            scanner.render(onScanSuccess, onScanFailure); // Restart scanner
+          })
+          .catch((error) => {
+            console.error("Failed to clear html5QrcodeScanner:", error);
+          });
       }, 500);
     };
 
@@ -36,11 +51,14 @@ export default function QrCodeScanner({
     scanner.render(onScanSuccess, onScanFailure);
 
     return () => {
-      scanner.clear().catch((error) => {
-        console.error("Failed to clear html5QrcodeScanner:", error);
-      });
+      if (scannerInstance.current) {
+        scannerInstance.current.clear().catch((error) => {
+          console.error("Failed to clear html5QrcodeScanner:", error);
+        });
+        scannerInstance.current = null;
+      }
     };
-  }, [scanResult]);
+  }, [setScanResult, setShowWelcomePopup]);
 
   return (
     <div className={`flex-col-center ${styles.QrCodeScanner}`}>
